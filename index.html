@@ -42,7 +42,7 @@
     <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <h1 class="text-lg font-semibold tracking-wide sm:text-xl">Zumba with Laetitia</h1>
-        <p class="text-xs text-slate-400 sm:text-sm">Curated playlist</p>
+        <p class="text-xs text-slate-400 sm:text-sm">Free Workouts</p>
       </div>
     </header>
 
@@ -77,38 +77,88 @@
       </section>
 
       <section class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <template x-for="video in videos" :key="video.id">
-          <article
-            class="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/80 shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:border-slate-600"
-          >
-            <button
-              type="button"
-              class="block w-full text-left"
-              @click="openModal(video.youtubeId)"
-              :aria-label="`Play ${video.title}`"
+        <template x-for="(video, index) in videos" :key="video.id">
+          <div>
+            <article
+              class="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/80 shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:border-slate-600"
             >
-              <div class="relative aspect-video overflow-hidden bg-slate-800">
-                <img
-                  class="h-full w-full object-cover transition duration-300 group-hover:scale-105 group-hover:opacity-80"
-                  :src="thumbnailFor(video.youtubeId)"
-                  :alt="`${video.title} thumbnail`"
-                  loading="lazy"
-                />
-                <div class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/35">
-                  <div class="rounded-full border border-white/60 bg-white/20 p-4 backdrop-blur-sm">
-                    <svg class="h-6 w-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M8 5v14l11-7z"></path>
-                    </svg>
+              <button
+                type="button"
+                class="block w-full text-left"
+                @click="openModal(video.youtubeId)"
+                :aria-label="`Play ${video.title}`"
+              >
+                <div class="relative aspect-video overflow-hidden bg-slate-800">
+                  <img
+                    class="h-full w-full object-cover transition duration-300 group-hover:scale-105 group-hover:opacity-80"
+                    :src="thumbnailFor(video.youtubeId)"
+                    :alt="`${video.title} thumbnail`"
+                    loading="lazy"
+                  />
+                  <div class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/35">
+                    <div class="rounded-full border border-white/60 bg-white/20 p-4 backdrop-blur-sm">
+                      <svg class="h-6 w-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8 5v14l11-7z"></path>
+                      </svg>
+                    </div>
                   </div>
                 </div>
+                <div class="space-y-2 p-4">
+                  <h3 class="line-clamp-2 text-lg font-semibold" x-text="video.title"></h3>
+                  <p class="text-sm text-slate-300" x-text="video.description"></p>
+                </div>
+              </button>
+            </article>
+
+            <article
+              x-show="(index + 1) % 2 === 0 && index < videos.length - 1"
+              class="mt-2 sm:hidden"
+              aria-label="Sponsored ad"
+            >
+              <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-3">
+                <p class="mb-2 text-[11px] uppercase tracking-wider text-slate-400">Sponsored</p>
+                <div class="flex justify-center">
+                  <a
+                    :href="adBanner.url"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                    @click="trackAdClick()"
+                  >
+                    <img
+                      :src="adBanner.mobileImage"
+                      :alt="adBanner.alt"
+                      class="h-[50px] w-[320px] max-w-full rounded-md border border-slate-700 object-cover"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
               </div>
-              <div class="space-y-2 p-4">
-                <h3 class="line-clamp-2 text-lg font-semibold" x-text="video.title"></h3>
-                <p class="text-sm text-slate-300" x-text="video.description"></p>
-              </div>
-            </button>
-          </article>
+            </article>
+          </div>
         </template>
+      </section>
+
+      <section class="mt-10" aria-label="Sponsored ad">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-3 sm:p-4">
+          <p class="mb-2 text-[11px] uppercase tracking-wider text-slate-400">Sponsored</p>
+          <div class="flex justify-center">
+            <a
+              :href="adBanner.url"
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              @click="trackAdClick()"
+            >
+              <img
+                :src="adBanner.mobileImage"
+                :alt="adBanner.alt"
+                class="h-[50px] w-[320px] max-w-full rounded-md border border-slate-700 object-cover"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </div>
       </section>
     </main>
 
