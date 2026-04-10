@@ -106,6 +106,7 @@
                 <div class="space-y-2 p-4">
                   <h3 class="line-clamp-2 text-lg font-semibold" x-text="video.title"></h3>
                   <p class="text-sm text-slate-300" x-text="video.description"></p>
+                  <p class="text-xs font-medium tracking-wide text-slate-400" x-text="`Length: ${video.duration}`"></p>
                 </div>
               </button>
             </article>
@@ -218,37 +219,43 @@
             id: "v1",
             title: "Dance Fitness Warm Up",
             youtubeId: "spgRTsyZny8",
-            description: "'Alena 9-min 130bpm' Warm Up by DJ Baddmixx."
+            description: "'Alena 9-min 130bpm' Warm Up by DJ Baddmixx.",
+            duration: "9:38"
           },
           {
             id: "v2",
             title: "Tango Dance Workout",
             youtubeId: "JyUJOmcbTz8",
-            description: "'Pa' Bailar' by Bajofondo ft. Julieta Venegas."
+            description: "'Pa' Bailar' by Bajofondo ft. Julieta Venegas.",
+            duration: "3:42"
           },
           {
             id: "v3",
             title: "Mambo Salsa Workout",
             youtubeId: "IW9OkPQrIlQ",
-            description: "'Mambo Salsa' by BIP"
+            description: "'Mambo Salsa' by BIP",
+            duration: "4:20"
           },
           {
             id: "v4",
             title: "Cumbia Dance Workout",
             youtubeId: "QqCJfl7acY4",
-            description: "'La Camisa Negra' by Juanes"
+            description: "'La Camisa Negra' by Juanes",
+            duration: "3:35"
           },
           {
             id: "v5",
             title: "Vallenato Cumbia Workout",
             youtubeId: "QxHCIUNV_Wg",
-            description: "'La Fantastica' by Zumba Fitness."
+            description: "'La Fantastica' by Zumba Fitness.",
+            duration: "3:55"
           },
           {
             id: "v6",
             title: "Tango Dance Workout",
             youtubeId: "yXlzI9tJwWM",
-            description: "'Tango Electronico' by Zumba Fitness."
+            description: "'Tango Electronico' by Zumba Fitness.",
+            duration: "3:48"
           }
         ],
         trackEvent(eventName, params = {}) {
