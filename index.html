@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zumbamos Video Gallery</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W3HCV9GSS1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-W3HCV9GSS1");
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -145,13 +156,34 @@
             description: "'Tango Electronico' by Zumba Fitness."
           }
         ],
+        trackEvent(eventName, params = {}) {
+          if (typeof window.gtag === "function") {
+            window.gtag("event", eventName, params);
+          }
+        },
+        videoByYoutubeId(videoId) {
+          return this.videos.find((video) => video.youtubeId === videoId) || null;
+        },
         openModal(videoId) {
+          const video = this.videoByYoutubeId(videoId);
           this.activeVideoId = videoId;
           this.isOpen = true;
+          this.trackEvent("video_open", {
+            video_id: videoId,
+            video_title: video ? video.title : "Unknown"
+          });
         },
         closeModal() {
+          const previousVideoId = this.activeVideoId;
+          const video = this.videoByYoutubeId(previousVideoId);
           this.isOpen = false;
           this.activeVideoId = "";
+          if (previousVideoId) {
+            this.trackEvent("video_close", {
+              video_id: previousVideoId,
+              video_title: video ? video.title : "Unknown"
+            });
+          }
         },
         thumbnailFor(videoId) {
           return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
