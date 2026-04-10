@@ -3,7 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zumbamos Video Gallery</title>
+  <meta name="description" content="Based in the heart of San Francisco, Laetitia brings the precision and flair of a competitive Ballroom Dance Champion to Zumba with authentic movement, rhythm, and joyful dance fitness for all levels." />
+  <meta name="keywords" content="zumba, dance fitness, ballroom dance workout, latin dance cardio, free zumba videos, zumba for beginners, dance workout at home, cardio dance workout, san francisco zumba, ballroom-inspired fitness, cumbia workout, salsa workout, tango workout, dance instructor Laetitia, online dance fitness" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="canonical" href="https://zumbamos.com/" />
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" rx="18" fill="%23020617"/%3E%3Ctext x="50" y="58" text-anchor="middle" font-size="56"%3E%F0%9F%92%83%3C/text%3E%3C/svg%3E' />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zumbamos.com/" />
+  <meta property="og:title" content="Zumba with Laetitia" />
+  <meta property="og:description" content="Based in the heart of San Francisco, Laetitia brings the precision and flair of a competitive Ballroom Dance Champion to Zumba with authentic movement, rhythm, and joyful dance fitness for all levels." />
+  <meta property="og:image" content="https://img.youtube.com/vi/spgRTsyZny8/hqdefault.jpg" />
+  <meta property="og:site_name" content="Zumbamos" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Zumba with Laetitia" />
+  <meta name="twitter:description" content="Based in the heart of San Francisco, Laetitia brings the precision and flair of a competitive Ballroom Dance Champion to Zumba with authentic movement, rhythm, and joyful dance fitness for all levels." />
+  <meta name="twitter:image" content="https://img.youtube.com/vi/spgRTsyZny8/hqdefault.jpg" />
+  <title>Zumba with Laetitia</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W3HCV9GSS1"></script>
   <script>
@@ -25,17 +41,45 @@
   >
     <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <h1 class="text-lg font-semibold tracking-wide sm:text-xl">Zumbamos Video Homepage</h1>
+        <h1 class="text-lg font-semibold tracking-wide sm:text-xl">Zumba with Laetitia</h1>
         <p class="text-xs text-slate-400 sm:text-sm">Curated playlist</p>
       </div>
     </header>
 
     <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <section class="mb-8">
-        <h2 class="text-2xl font-bold sm:text-3xl">Playlist</h2>
+        <h2 class="text-2xl font-bold sm:text-3xl">Latin Dance Workout Playlist</h2>
         <p class="mt-2 max-w-3xl text-sm text-slate-300 sm:text-base">
-          Choose a video to watch. Clicking any card opens a responsive modal player.
+          Laetitia is a San Francisco-based instructor and former competitive Ballroom Dance Champion who blends authentic Latin rhythms with joyful, all-level dance fitness.
         </p>
+      </section>
+
+      <section class="mb-8" aria-label="Sponsored ad">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-3 sm:p-4">
+          <p class="mb-2 text-[11px] uppercase tracking-wider text-slate-400">Sponsored</p>
+          <div class="flex justify-center">
+            <a
+              :href="adBanner.url"
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              @click="trackEvent('ad_click', { ad_id: adBanner.id, ad_name: adBanner.name, ad_url: adBanner.url })"
+            >
+              <img
+                :src="adBanner.mobileImage"
+                :alt="adBanner.alt"
+                class="h-[50px] w-[320px] max-w-full rounded-md border border-slate-700 object-cover sm:hidden"
+                loading="lazy"
+              />
+              <img
+                :src="adBanner.desktopImage"
+                :alt="adBanner.alt"
+                class="hidden h-[90px] w-[728px] max-w-full rounded-md border border-slate-700 object-cover sm:block"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </div>
       </section>
 
       <section class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -118,6 +162,14 @@
       return {
         isOpen: false,
         activeVideoId: "",
+        adBanner: {
+          id: "sponsor_1",
+          name: "Featured Sponsor",
+          url: "https://example.com",
+          alt: "Featured sponsor ad banner",
+          mobileImage: "https://placehold.co/320x50/0f172a/e2e8f0?text=IAB+320x50+Sponsor+Banner",
+          desktopImage: "https://placehold.co/728x90/0f172a/e2e8f0?text=IAB+728x90+Sponsor+Banner"
+        },
         videos: [
           {
             id: "v1",
