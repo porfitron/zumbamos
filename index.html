@@ -63,7 +63,7 @@
               target="_blank"
               rel="noopener noreferrer sponsored"
               class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-              @click="trackEvent('ad_click', { ad_id: adBanner.id, ad_name: adBanner.name, ad_url: adBanner.url })"
+              @click="trackAdClick()"
             >
               <img
                 :src="adBanner.mobileImage"
@@ -205,6 +205,15 @@
           if (typeof window.gtag === "function") {
             window.gtag("event", eventName, params);
           }
+        },
+        trackAdClick() {
+          this.trackEvent("ad_click", {
+            ad_id: this.adBanner.id,
+            ad_name: this.adBanner.name,
+            ad_url: this.adBanner.url,
+            ad_placement: "above_video_grid",
+            outbound: true
+          });
         },
         videoByYoutubeId(videoId) {
           return this.videos.find((video) => video.youtubeId === videoId) || null;
